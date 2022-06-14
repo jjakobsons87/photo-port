@@ -7,6 +7,20 @@ afterEach(cleanup);
 
 describe('Nav Component', () => {
     // baseline test
+    it('renders', () => {
+        render(<Nav />);
+    });
 
     //  snapshot test
+    it('matches snapshot', () => {
+        const { asFragment } = render(<Nav />);
+        expect(asFragment()).toMatchSnapshot();
+    });
+})
+
+describe('emoji is visible', () => {
+    it('inserts emoji into the h2', () => {
+        const { getByLabelText } = render(<Nav />);
+        expect(getByLabelText("camera")).toHaveTextContent("📸");
+    })
 })
