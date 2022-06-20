@@ -10,10 +10,10 @@ function Nav(props) {
         setContactSelected
     } = props;
 
-    const handleClick = (item) => {
-        console.log(item);
-        return item;
-    };
+    // const handleClick = (item) => {
+    //     console.log(item);
+    //     return item;
+    // };
 
     return (
         <header className='flex-row px-1'>
