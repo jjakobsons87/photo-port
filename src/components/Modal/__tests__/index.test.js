@@ -1,8 +1,9 @@
 import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import PhotoList from "../";
+import Modal from "../";
 
+const mockToggleModal = jest.fn();
 const currentPhoto = {
     name: 'Park bench',
     category: 'landscape',
@@ -10,15 +11,23 @@ const currentPhoto = {
     index: 1
 };
 
-const mockToggleModal = jest.fn();
-
 afterEach(cleanup);
 
 describe('Modal component', () => {
     it('renders', () => {
-        // vaseline render omponent test 
+       render(<Modal
+        onClose={mockToggleModal}
+        currentPhoto={currentPhoto}
+        />);
     })
-    // snapshot test 
+    
+    it('matches snapshot DOM node structure', () => {
+        const { asFragment } = render(<Modal
+            onClose={mockToggleModal}
+            currentPhoto={currentPhoto}
+        />);
+        expect(asFragment()).toMatchSnapshot();
+    })
 })
 
 describe('Click Event', () => {
